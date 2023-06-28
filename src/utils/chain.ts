@@ -3,6 +3,7 @@ import {
   CustomTestnetToken,
   TestnetChain,
 } from '@/background/service/customTestnet';
+import browser from 'webextension-polyfill';
 import defaultSuppordChain from '@/constant/default-support-chains.json';
 import eventBus from '@/eventBus';
 import { Chain } from '@debank/common';
@@ -15,7 +16,7 @@ import { CHAINS, CHAINS_ENUM, EVENTS } from 'consts';
 import { toHex } from 'viem';
 
 export const getMainnetListFromLocal = () => {
-  return chrome.storage.local.get('rabbyMainnetChainList').then((res) => {
+  return browser.storage.local.get('rabbyMainnetChainList').then((res) => {
     return res?.rabbyMainnetChainList || [];
   });
 };
