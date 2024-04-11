@@ -1000,7 +1000,7 @@ class ProviderController extends BaseController {
   };
 
   @Reflect.metadata('APPROVAL', [
-    'AddChain',
+    'SwitchChain',
     ({
       data: {
         params: [chainParams],

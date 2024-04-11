@@ -5,7 +5,7 @@ import browser from 'webextension-polyfill';
 import { ALARMS_SYNC_CHAINS } from '../utils/alarms';
 import { http } from '../utils/http';
 import { SupportedChain } from './openapi';
-import { openapiService } from '.';
+import { openapiService, sessionService } from '.';
 
 class SyncChainService {
   timer: ReturnType<typeof setInterval> | null = null;
@@ -28,9 +28,13 @@ class SyncChainService {
       updateChainStore({
         mainnetList: list,
       });
-      chrome.storage.local.set({
+      browser.storage.local.set({
         rabbyMainnetChainList: list,
       });
+      sessionService.broadcastToDesktopOnly('syncChainList', {
+        mainnetList: list,
+      });
+      return list;
     } catch (e) {
       console.error('fetch chain list error: ', e);
     }

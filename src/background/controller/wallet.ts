@@ -96,6 +96,7 @@ import {
   findChain,
   findChainByEnum,
   getChainList,
+  getMainnetListFromLocal,
   supportedChainToChain,
   updateChainStore,
 } from '@/utils/chain';
@@ -3785,6 +3786,9 @@ export class WalletController extends BaseController {
   };
 
   syncMainnetChainList = syncChainService.syncMainnetChainList;
+
+  getMainnetListFromLocal = getMainnetListFromLocal;
+
   mintedRabbyTotal = async () => {
     const contract = await initMintRabbyContract();
     const result = await contract.totalSupply();
